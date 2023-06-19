@@ -40,7 +40,7 @@ class LoginController extends GetxController {
           passwordLoginController.clear();
 
           /// after successfully logged in user will direct to homepage
-          Get.offAll(() => const HomeScreen());
+          Get.offAll(() => HomeScreen());
           Get.snackbar("Successful!", 'Login Successful');
         } else if (value.statusCode == 400) {
           final jsonData = json.decode(value.body);

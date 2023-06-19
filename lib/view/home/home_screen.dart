@@ -9,7 +9,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     UserController userController = Get.find();
-    userController.fetchData();
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
@@ -20,21 +20,22 @@ class HomeScreen extends StatelessWidget {
             style: TextStyle(color: Colors.white),
           ),
         ),
-        body: Obx(() => SingleChildScrollView(
+        body: SingleChildScrollView(
+            controller: userController.scrollController,
             child: Container(
-                margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: userController.rxUsers.value.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisExtent: MediaQuery.of(context).size.height / 6,
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 5,
-                        crossAxisSpacing: 5),
-                    itemBuilder: (BuildContext context, int index) {
-                      return UserCard(
-                          user: userController.rxUsers.value[index]);
-                    })))));
+              margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              child: Obx(() => GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: userController.rxUsers.value.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      mainAxisExtent: MediaQuery.of(context).size.height / 5,
+                      crossAxisCount: 3,
+                      mainAxisSpacing: 5,
+                      crossAxisSpacing: 5),
+                  itemBuilder: (BuildContext context, int index) {
+                    return UserCard(user: userController.rxUsers.value[index]);
+                  })),
+            )));
   }
 }

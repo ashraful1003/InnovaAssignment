@@ -19,6 +19,7 @@ class UserCard extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Colors.blue.shade50),
+        alignment: Alignment.center,
         child: Column(
           children: [
             Hero(
