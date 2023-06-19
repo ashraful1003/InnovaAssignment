@@ -73,7 +73,9 @@ class UserController extends GetxController {
     Uri apiUrl = Uri.parse('$APIROOT$DELETE$id');
 
     return http.get(apiUrl, headers: myHeaders).then((value) {
-      if (value.statusCode == 204) {
+      print(value.statusCode);
+      if (value.statusCode == 200) {
+        /// they did not sort the users after deletion completed!
         Get.off(() => HomeScreen());
         Get.snackbar('Delete', 'Successfully Deleted User!');
       }

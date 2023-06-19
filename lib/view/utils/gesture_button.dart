@@ -3,18 +3,21 @@ import 'package:innova_assign/controller/login_controller.dart';
 import 'package:innova_assign/controller/user_controller.dart';
 
 class GestureButton extends StatelessWidget {
-  GestureButton({Key? key, required this.btnText, this.id}) : super(key: key);
+  GestureButton(
+      {Key? key, required this.btnText, this.id, this.email, this.password})
+      : super(key: key);
 
   String btnText;
   int? id;
+  String? email, password;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
           if (btnText == 'login') {
-            LoginController().login();
-          } else if (btnText == '') {
+            LoginController().login(email!, password!);
+          } else if (btnText == 'delete') {
             UserController().deleteUser(id!);
           }
         },

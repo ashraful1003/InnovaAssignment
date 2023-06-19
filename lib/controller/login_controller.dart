@@ -8,12 +8,9 @@ import 'package:innova_assign/view/home/home_screen.dart';
 import '../view/utils/constants.dart';
 
 class LoginController extends GetxController {
-  TextEditingController emailLoginController = TextEditingController();
-  TextEditingController passwordLoginController = TextEditingController();
-
   var isLoading = false.obs;
 
-  Future<void> login() async {
+  Future<void> login(String email, String password) async {
     try {
       var myHeaders = {
         'Content-Type': 'application/json',
@@ -22,22 +19,20 @@ class LoginController extends GetxController {
       Uri apiUrl = Uri.parse('$APIROOT$LOGGIN');
 
       Map data = {
-        'email': emailLoginController.text.toString(),
-        'password': passwordLoginController.text.toString(),
+        'email': email,
+        'password': password,
       };
 
       String body = json.encode(data);
+      print(body);
 
       return http.post(apiUrl, body: body, headers: myHeaders).then((value) {
+        print(value.statusCode);
         if (value.statusCode == 200) {
           final jsonData = json.decode(value.body);
 
           /// for further use
           String info = jsonData['token'];
-
-          /// clear controllers
-          emailLoginController.clear();
-          passwordLoginController.clear();
 
           /// after successfully logged in user will direct to homepage
           Get.offAll(() => HomeScreen());

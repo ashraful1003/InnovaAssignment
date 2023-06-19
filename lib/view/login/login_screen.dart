@@ -7,11 +7,13 @@ import 'package:innova_assign/view/login/custom_text_field.dart';
 import '../utils/gesture_button.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({Key? key}) : super(key: key);
+
+  TextEditingController emailLoginController = TextEditingController();
+  TextEditingController passwordLoginController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    LoginController loginController = Get.find();
     return Scaffold(
       body: SafeArea(
         child: Container(
@@ -50,19 +52,22 @@ class LoginScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CustomTextField(
-                          controller: loginController.emailLoginController,
-                          hintText: 'Enter Email',
-                          labelText: 'Email',
-                          icon: Icons.email_outlined,
-                          textInputType: TextInputType.emailAddress),
+                          controller: emailLoginController,
+                          fieldIcon: Icons.email,
+                          fieldLabelText: "Email"),
+                      SizedBox(
+                        height: 15,
+                      ),
                       CustomTextField(
-                          controller: loginController.passwordLoginController,
-                          hintText: 'Enter Password',
-                          labelText: 'Password',
-                          icon: Icons.lock_outline_rounded,
-                          textInputType: TextInputType.visiblePassword),
+                          controller: passwordLoginController,
+                          fieldIcon: Icons.lock,
+                          fieldLabelText: "Password",
+                          isObscure: true),
                       const SizedBox(height: 40),
-                      GestureButton(btnText: 'login'),
+                      GestureButton(
+                          btnText: 'login',
+                          email: emailLoginController.text,
+                          password: passwordLoginController.text),
                     ],
                   ),
                 )

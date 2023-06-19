@@ -1,50 +1,36 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField(
-      {Key? key,
-      required this.controller,
-      required this.hintText,
-      required this.labelText,
-      required this.icon,
-      required this.textInputType})
-      : super(key: key);
+  CustomTextField({
+    Key? key,
+    required this.controller,
+    required this.fieldIcon,
+    required this.fieldLabelText,
+    this.isObscure = false,
+  }) : super(key: key);
 
-  TextEditingController? controller;
-  String? hintText, labelText;
-  IconData? icon;
-  TextInputType textInputType;
+  TextEditingController controller;
+  IconData fieldIcon;
+  String fieldLabelText;
+  bool isObscure;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: const [
-                BoxShadow(
-                    color: Color.fromRGBO(27, 90, 225, 0.30196078431372547),
-                    blurRadius: 20,
-                    offset: Offset(0, 5))
-              ]),
-          child: TextField(
-            controller: controller,
-            keyboardType: textInputType,
-            textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-                hintText: hintText,
-                labelText: "$labelText(*)",
-                prefixIcon: Icon(icon),
-                hintStyle: const TextStyle(color: Colors.grey),
-                border: const OutlineInputBorder()),
-          ),
+    return TextField(
+      controller: controller,
+      obscureText: isObscure,
+      decoration: InputDecoration(
+        icon: Icon(fieldIcon),
+        labelText: fieldLabelText,
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(color: Colors.blue),
         ),
-        const SizedBox(
-          height: 10,
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(5),
+          borderSide: const BorderSide(color: Colors.blue),
         ),
-      ],
+      ),
     );
   }
 }
