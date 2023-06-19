@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:innova_assign/controller/init_controller.dart';
+import 'package:innova_assign/view/details/details_screen.dart';
 import 'package:innova_assign/view/home/home_screen.dart';
 import 'package:innova_assign/view/login/login_screen.dart';
 
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LoginScreen(),
+      home: HomeScreen(),
     );
   }
 }

@@ -4,6 +4,8 @@ import 'package:innova_assign/controller/login_controller.dart';
 import 'package:innova_assign/view/home/home_screen.dart';
 import 'package:innova_assign/view/login/custom_text_field.dart';
 
+import '../utils/gesture_button.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -60,27 +62,7 @@ class LoginScreen extends StatelessWidget {
                           icon: Icons.lock_outline_rounded,
                           textInputType: TextInputType.visiblePassword),
                       const SizedBox(height: 40),
-                      GestureDetector(
-                        onTap: () {
-                          loginController.login();
-                        },
-                        child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: 50,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15),
-                            color: Colors.blue,
-                          ),
-                          alignment: Alignment.center,
-                          child: const Text(
-                            "LOGIN",
-                            style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
-                          ),
-                        ),
-                      )
+                      GestureButton(btnText: 'login'),
                     ],
                   ),
                 )
