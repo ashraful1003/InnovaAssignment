@@ -49,43 +49,31 @@ class DetailsScreen extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Center(
-                    //   child: Hero(
-                    //     tag: '${product.id}',
-                    //     child: ProductPoster(
-                    //       size: MediaQuery.of(context).size,
-                    //       image: product.image,
-                    //     ),
-                    //   ),
-                    // ),
-
-                    UserPoster(
-                      size: MediaQuery.of(context).size.width * 0.7,
-                      image: user.avatar,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        '${user.firstName} ${user.lastName}',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                    ),
-                    Text(
-                      '${user.id}',
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.blue,
-                      ),
-                    ),
+                    Center(
+                        child: Hero(
+                            tag: '${user.id}',
+                            child: UserPoster(
+                                size: MediaQuery.of(context).size.width * 0.7,
+                                image: user.avatar))),
                     Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Text(
-                          user.email,
-                          style: const TextStyle(color: Colors.grey),
-                        )),
+                            'User Name: ${user.firstName} ${user.lastName}',
+                            style: Theme.of(context).textTheme.titleLarge)),
+                    Text('User ID: ${user.id}',
+                        style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blue)),
+                    Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: Text('User Email: ${user.email}',
+                            style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: Colors.blue))),
                     const SizedBox(height: 20),
-                    GestureButton(btnText: 'delete'),
+                    GestureButton(btnText: 'delete', id: user.id),
                   ])),
         ])));
   }

@@ -37,4 +37,20 @@ class UserController extends GetxController {
       Get.snackbar("Wrong", "Something went wrong. ${onError.toString()}");
     });
   }
+
+  Future<void> deleteUser(int id) async {
+    var myHeaders = {
+      'Content-Type': 'application/json',
+    };
+
+    Uri apiUrl = Uri.parse('$APIROOT$DELETE$id');
+
+    return http.get(apiUrl, headers: myHeaders).then((value) {
+      if (value.statusCode == 204) {
+        Get.snackbar('Delete', 'Successfully Deleted User!');
+      }
+    }).catchError((onError) {
+      Get.snackbar("Wrong", "Something went wrong. ${onError.toString()}");
+    });
+  }
 }

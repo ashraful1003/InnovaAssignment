@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                     shrinkWrap: true,
                     itemCount: userController.rxUsers.value.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      mainAxisExtent: MediaQuery.of(context).size.height/6,
+                        mainAxisExtent: MediaQuery.of(context).size.height / 6,
                         crossAxisCount: 3,
                         mainAxisSpacing: 5,
                         crossAxisSpacing: 5),

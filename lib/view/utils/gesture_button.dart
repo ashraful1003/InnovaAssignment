@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:innova_assign/controller/login_controller.dart';
+import 'package:innova_assign/controller/user_controller.dart';
 
 class GestureButton extends StatelessWidget {
-  GestureButton({Key? key, required this.btnText}) : super(key: key);
+  GestureButton({Key? key, required this.btnText, this.id}) : super(key: key);
 
   String btnText;
+  int? id;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +15,7 @@ class GestureButton extends StatelessWidget {
           if (btnText == 'login') {
             LoginController().login();
           } else if (btnText == '') {
-            ///
+            UserController().deleteUser(id!);
           }
         },
         child: Container(
